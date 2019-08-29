@@ -1,10 +1,14 @@
+# word inputted
 word = input("insert word to guess: ")
+# variables for word to find
 unkownWord = "_" * len(word)
 unkownWord = list(unkownWord)
+presentInUnkownWord = False
+# variable for the letter used and anwer
 usedLetter = [""]
-guesses = 6
-presentInList = False
 answer = ""
+# number of guesses
+guesses = 6
 
 
 def listToString(s):
@@ -15,19 +19,23 @@ def listToString(s):
 
 
 while guesses > 0:
-    letter = input("insert letter:")
+    print(listToString(unkownWord))
+    letter = input("insert letter or word:")
     # try condition better
     if letter in usedLetter:
         print("letter already used, please choose other")
         letter = input("insert letter:")
+    elif letter == word:
+        print("congratulation you found the word!")
+        break
     else:
         for i in range(len(unkownWord)):
             if letter == word[i]:
                 unkownWord[i] = letter
-                presentInList = True
+                presentInUnkownWord = True
             else:
                 pass
-        if presentInList is not True:
+        if presentInUnkownWord is not True:
             guesses -= 1
             if guesses == 5:
                 print("%d guesses remaining" % (guesses))
@@ -72,11 +80,10 @@ while guesses > 0:
                 print(" | /|\\")
                 print("_|_/\\")
                 print("The correct word was: %s" % (word))
-        presentInList = False
+        presentInUnkownWord = False
     answer = listToString(unkownWord)
     if answer == word:
         print("congratulation you found the word!")
         break
     else:
-        print(answer)
         usedLetter.append(letter)
