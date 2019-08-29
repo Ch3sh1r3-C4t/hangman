@@ -1,3 +1,10 @@
+def listToString(s):
+    # initialize an empty string
+    str1 = ""
+    # return string
+    return (str1.join(s))
+
+
 # word inputted
 word = input("insert word to guess: ")
 # variables for word to find
@@ -10,14 +17,6 @@ answer = ""
 # number of guesses
 guesses = 6
 
-
-def listToString(s):
-    # initialize an empty string
-    str1 = ""
-    # return string
-    return (str1.join(s))
-
-
 while guesses > 0:
     print(listToString(unkownWord))
     letter = input("insert letter or word:")
@@ -26,6 +25,7 @@ while guesses > 0:
         print("letter already used, please choose other")
         letter = input("insert letter:")
     elif letter == word:
+        print(word)
         print("congratulation you found the word!")
         break
     else:
@@ -83,6 +83,7 @@ while guesses > 0:
         presentInUnkownWord = False
     answer = listToString(unkownWord)
     if answer == word:
+        print(word)
         print("congratulation you found the word!")
         break
     else:
