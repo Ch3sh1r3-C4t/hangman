@@ -1,3 +1,6 @@
+import os
+
+
 def listToString(s):
     # initialize an empty string
     str1 = ""
@@ -5,14 +8,16 @@ def listToString(s):
     return (str1.join(s))
 
 
+keepGoing = "Y"
 # word inputted
 word = input("insert word to guess: ")
+os.system('clear')
 # variables for word to find
 unkownWord = "_" * len(word)
 unkownWord = list(unkownWord)
 presentInUnkownWord = False
 # variable for the letter used and anwer
-usedLetter = [""]
+usedLetter = []
 answer = ""
 # number of guesses
 guesses = 6
@@ -22,12 +27,29 @@ while guesses > 0:
     letter = input("insert letter or word:")
     # try condition better
     if letter in usedLetter:
-        print("letter already used, please choose other")
+        print("letter/word already used, please choose other")
         letter = input("insert letter:")
     elif letter == word:
         print(word)
         print("congratulation you found the word!")
-        break
+        keepGoing = input("do you want to continue (Y,N)? ")
+        if keepGoing == "Y":
+            word = input("insert word to guess: ")
+            os.system('clear')
+            # variables for word to find
+            unkownWord = "_" * len(word)
+            unkownWord = list(unkownWord)
+            presentInUnkownWord = False
+            # variable for the letter used and anwer
+            usedLetter = []
+            answer = ""
+            # number of guesses
+            guesses = 6
+        elif keepGoing != "Y" and keepGoing != "N":
+            print("input not valid")
+            break
+        else:
+            break
     else:
         for i in range(len(unkownWord)):
             if letter == word[i]:
@@ -80,11 +102,45 @@ while guesses > 0:
                 print(" | /|\\")
                 print("_|_/\\")
                 print("The correct word was: %s" % (word))
+                keepGoing = input("do you want to continue (Y,N)? ")
+                if keepGoing == "Y":
+                    word = input("insert word to guess: ")
+                    # variables for word to find
+                    unkownWord = "_" * len(word)
+                    unkownWord = list(unkownWord)
+                    presentInUnkownWord = False
+                    # variable for the letter used and anwer
+                    usedLetter = [""]
+                    answer = ""
+                    # number of guesses
+                    guesses = 6
+                elif keepGoing != "Y" and keepGoing != "N":
+                    print("input not valid")
+                    break
+                else:
+                    print("thank for play")
+                    break
         presentInUnkownWord = False
     answer = listToString(unkownWord)
     if answer == word:
         print(word)
         print("congratulation you found the word!")
-        break
+        keepGoing = input("do you want to continue (Y,N)? ")
+        if keepGoing == "Y":
+            word = input("insert word to guess: ")
+            # variables for word to find
+            unkownWord = "_" * len(word)
+            unkownWord = list(unkownWord)
+            presentInUnkownWord = False
+            # variable for the letter used and anwer
+            usedLetter = [""]
+            answer = ""
+            # number of guesses
+            guesses = 6
+        elif keepGoing != "Y" and keepGoing != "N":
+            print("input not valid")
+            break
+        else:
+            break
     else:
         usedLetter.append(letter)
